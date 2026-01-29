@@ -54,10 +54,16 @@ function initAutocomplete() {
 
             if (isDay==1 && rain == 0 && showers == 0) {
                 weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/clear&sunny.jpeg')";
-            } else if ((rain > 0) || (showers > 0)) {
-                weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/night.jpeg')";
-            } else {
+            } else if (isDay==1 && rain >= 0 ) {
                 weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/day&Rainny.jpeg')";
+            } else if (isDay==1 && snowfall >0){
+                weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/morning&snow.jpeg.jpeg')";
+            }else if (isDay==0 && rain == 0 && showers == 0) {
+                weatherBackgroundImage.style.backgroundImage = "url('wweatherBackgroundImages/night.jpeg')";
+            } else if (isDay==0 && rain > 0 ) {
+                weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/night.jpeg')";
+            } else if (isDay==0  && snowfall >0){
+                weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/night&snow.jpeg')";
             }
 
         })       
