@@ -1,5 +1,16 @@
 # TodaysWeatherDreamTheCode
 This is the Pre Work Project Dream The Code.
+A web Application that shows current weather and its location in google map
+
+###Description
+This website fetches the latitude and longitude of the user’s current location or a city selected via autocomplete. It displays real-time weather information including temperature, humidity, wind speed, day/night status, rainfall, and snowfall. The exact location is marked on an interactive map, and the background dynamically changes based on the time of day and current weather conditions such as clear skies, rain, or snow.
 
 
-The Website fetchs the latitude and longitude of the current location or city the is been autocompleted and displays the Temperature , humidity , windspeed, Day or night, snowfall , rainfall.Then points in the map the exact location in fetches . Then changes the background based on day or night and clear sky or rainfall or snowfall.
+###Features
+1.Autocomplete city search using Google Places API
+2.Shows current weather: temperature, humidity, wind speed
+3.Dynamic background images based on weather
+4.Interactive Google Map with marker at current location
+
+
+###Installation
