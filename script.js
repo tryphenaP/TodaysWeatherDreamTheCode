@@ -172,10 +172,27 @@ function initAutocomplete() {
         /* To create the map in the div with id googleMap and to set the marker on the map */
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
         marker.setMap(map);
-
-
-
     });
-
-
 };
+
+// 1. Expose the function to the window so Google Maps can find it
+window.initAutocomplete = initAutocomplete;
+
+// 2. Dynamically load the Google Maps script with the secure key
+const loadGoogleMaps = () => {
+    const script = document.createElement('script');
+    
+    // Grab the key from the .env file using Vite's special syntax
+    const apiKey = import.meta.env.VITE_API_KEY; 
+    
+    // Construct the URL with the key and the callback
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initAutocomplete`;
+    script.async = true;
+    script.defer = true;
+    
+    // Add the script to the page
+    document.head.appendChild(script);
+};
+
+// 3. Trigger the loader
+loadGoogleMaps();

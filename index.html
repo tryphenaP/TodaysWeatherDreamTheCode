@@ -20,12 +20,8 @@
         <p id="weather-info"></p>
         <!-- To display google map -->
         <div id="googleMap" style="width:100%;height:400px;"></div>
-        <!-- JavaScript file to fetch weather details and google map -->
-        <script type="text/javascript" src="script.js"></script>
         <!-- Google map RESTful API with the API key -->
-        <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=${process.env.API_KEY}libraries=places&callback=initAutocomplete"
-            async defer></script>
+        <script type="module" src="script.js"></script>
     </div>
 </body>
 
