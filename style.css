@@ -51,6 +51,7 @@ body {
   margin: 5px 0;
 }
 #weather-background {
+  background-image: url('weatherBackgroundImages/clear&sunny.jpeg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
