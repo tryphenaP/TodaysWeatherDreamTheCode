@@ -8,8 +8,11 @@ This website fetches the latitude and longitude of the user’s current location
 
 ### Features
 1.Autocomplete city search using Google Places API
+
 2.Shows current weather: temperature, humidity, wind speed
+
 3.Dynamic background images based on weather
+
 4.Interactive Google Map with marker at current location
 
 
