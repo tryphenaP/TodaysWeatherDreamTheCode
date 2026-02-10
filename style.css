@@ -1,29 +1,23 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
+/* Stlying for the header white text with a purple shadow and grey background */
 h1 {
   background-color: grey;
   padding: 12px;
   text-align: center;
   color: white;
-  text-shadow: 2px 2px 4px #000000;
+  text-shadow: 2px 2px 4px #b940f15b;
   border-radius: 6px;
 }
+
+/* Styling for the body with default blue colour when the dynamic image is not available */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 0px;
   background-color: #93ebf7;
 }
-#weather-container {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+
+
+/* Styling for auto input city box */
 #weather-location {
   width: 100%;
   max-width: 500px;
@@ -35,28 +29,17 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-#weather-details {
-  margin-top: 20px;
-}
-#map {
-  height: 300px;
-  width: 100%;
-  margin-top: 20px;
-  border-radius: 8px;
-  
-}   
 
-#weather-details p {
-  font-size: 16px;
-  margin: 5px 0;
-}
+
+/* styling for dynamic  background image */
 #weather-background {
-  background-image: url('weatherBackgroundImages/clear&sunny.jpeg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
   padding: 40px;
 }
+
+/* styling for contains in weather details display box */
 #weather-info {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
@@ -64,13 +47,15 @@ body {
   max-width: 600px;
   margin: 20px auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-} 
+}
 
+/* styling for scripts in weather details display box */
 #weather-info p {
   font-size: 16px;
   margin: 6px 0;
 }
 
+/* styling for google map */
 #googleMap {
   height: 400px;
   width: 100%;

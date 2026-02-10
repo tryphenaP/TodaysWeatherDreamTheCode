@@ -16,7 +16,7 @@ function initAutocomplete() {
         var weatherLocationLongitudeOnload = position.coords.longitude;
 
         /* accessing open meteo with the obtaining laitude and longitude  to obtain temperature , humidity, windspeed, dayornight , snowfall , raining WITH RESTful API*/
-        var weatherAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=${weatherLocationLatitudeOnload}&longitude=${weatherLocationLongitudeOnload}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,is_day,rain,showers,snowfall`;
+        var weatherAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=${weatherLocationLatitudeOnload}&longitude=${weatherLocationLongitudeOnload}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,is_day,rain,snowfall`;
 
         /* 1.request data i.e. sends an HTTP request to the weather API  2.response.json() → convert to JS  3. data → actual weather info 4.then() → wait for async steps*/
         fetch(weatherAPIURL)
@@ -29,13 +29,14 @@ function initAutocomplete() {
                 var isDay = data.current.is_day;
                 var dayText = isDay == 1 ? "Morning" : "Night";
                 var rain = data.current.rain;
-                var showers = data.current.showers;
                 var snowfall = data.current.snowfall;
+
+    
 
                 /* Display the fetched data in the weather info div */
                 var weatherInfoDiv = document.getElementById('weather-info');
                 weatherInfoDiv.innerHTML = `
-            <h2>Current Location Weather Information</h2>
+            <h2>Weather Information in current location</h2>
             <p><strong>Temperature:</strong> ${temperature} °C</p>
             <p><strong>Humidity:</strong> ${humidity} %</p>
             <p><strong>Wind Speed:</strong> ${windSpeed} m/s</p> 
@@ -46,13 +47,13 @@ function initAutocomplete() {
 
                 /* Displaying the background image based on weather conditions */
                 const weatherBackgroundImage = document.getElementById('weather-background');
-                if (isDay == 1 && rain == 0 && showers == 0) {
+                if (isDay == 1 && rain == 0 && snowfall == 0) {
                     weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/clear&sunny.jpeg')";
-                } else if (isDay == 1 && rain >= 0) {
-                    weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/day&Rainny.jpeg')";
+                } else if (isDay == 1 && rain >0) {
+                    weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/day&Rainny.jpg')";
                 } else if (isDay == 1 && snowfall > 0) {
-                    weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/morning&snow.jpeg.jpeg')";
-                } else if (isDay == 0 && rain == 0 && showers == 0) {
+                    weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/morning&snow.jpeg')";
+                } else if (isDay == 0 && rain == 0 && snowfall == 0) {
                     weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/night.jpeg')";
                 } else if (isDay == 0 && rain > 0) {
                     weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/night.jpeg')";
@@ -89,7 +90,7 @@ function initAutocomplete() {
 
     /* Displaying the weather detials, map and background based on the autotyped location in the text box */
     weatherLocationAutocomplete.addListener('place_changed', function () {
-        
+
         var place = weatherLocationAutocomplete.getPlace();
 
         // Safety check: Stop if user didn't select a valid city
@@ -116,12 +117,12 @@ function initAutocomplete() {
                 var isDay = data.current.is_day;
                 var dayText = isDay == 1 ? "Morning" : "Night";
                 var rain = data.current.rain;
-                var showers = data.current.showers;
                 var snowfall = data.current.snowfall;
+
 
                 /* Display the fetched data */
                 var weatherInfoDiv = document.getElementById('weather-info');
-                
+
                 // ✅ FIXED BLOCK: Removed duplicate lines and stray backticks
                 weatherInfoDiv.innerHTML = `
                     <h2>Weather in ${cityName}</h2>
@@ -135,16 +136,16 @@ function initAutocomplete() {
 
                 /* Background Image Logic */
                 const weatherBackgroundImage = document.getElementById('weather-background');
-                if (isDay == 1 && rain == 0 && showers == 0) {
+                if (isDay == 1 && rain == 0 && snowfall == 0) {
                     weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/clear&sunny.jpeg')";
-                } else if (isDay == 1 && rain >= 0) {
-                    weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/day&Rainny.jpeg')";
+                } else if (isDay == 1 && rain > 0) {
+                    weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/day&Rainny.jpg')";
                 } else if (isDay == 1 && snowfall > 0) {
                     weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/morning&snow.jpeg')";
-                } else if (isDay == 0 && rain == 0 && showers == 0) {
+                } else if (isDay == 0 && rain == 0 && snowfall == 0) {
                     weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/night.jpeg')";
                 } else if (isDay == 0 && rain > 0) {
-                    weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/night.jpeg')";
+                    weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/night$Rainny.jpg')";
                 } else if (isDay == 0 && snowfall > 0) {
                     weatherBackgroundImage.style.backgroundImage = "url('weatherBackgroundImages/night&snow.jpeg')";
                 }
@@ -178,15 +179,16 @@ window.initAutocomplete = initAutocomplete;
 // 2. Dynamically load the Google Maps script with the secure key
 const loadGoogleMaps = () => {
     const script = document.createElement('script');
-    
+
     // Grab the key from the .env file using Vite's special syntax
-    const apiKey = import.meta.env.VITE_API_KEY; 
-    
+    const apiKey = import.meta.env.VITE_API_KEY;
+
+
     // Construct the URL with the key and the callback
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initAutocomplete`;
     script.async = true;
     script.defer = true;
-    
+
     // Add the script to the page
     document.head.appendChild(script);
 };
